@@ -1,0 +1,1 @@
+warehouse.mongodb.js - skrypt do początkowej inicjalizacji bazy "warehouseDB" i kolekcji "products" z przykładowymi dokumentami - nalezy uruchomic tylko raz.
