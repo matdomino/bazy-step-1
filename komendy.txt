@@ -1,1 +1,0 @@
-curl -X GET -H "Content-Type: application/json" -d "{\"sortBy\": \"name\", \"sortOrder\": \"asc\"}" http://localhost:3000/products
