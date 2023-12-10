@@ -64,7 +64,7 @@ async function connect() {
                 }
 
                 const result = await productsCollection.insertOne(product);
-                if (result.insertedCount === 1) {
+                if (result.acknowledged === true) {
                     return res.json({ success: 'Dodano produkt.' });
                 } else {
                     return res.json({ error: 'Błąd. Nie udało się dodać produktu.' });
@@ -81,21 +81,21 @@ async function connect() {
                 const id = req.params.id;
                 const { newName, newPrice, newDescription, newQuantity, newUnit } = req.body;
 
-                const existingProduct = await productsCollection.findOne({ "_id": ObjectId(id) });
+                const existingProduct = await productsCollection.findOne({ "_id": new ObjectId(id) });
                 if (!(existingProduct)) {
                     res.json({ error: 'Brak produktu o takim id w bazie danych.' });
                     return;
                 }
 
                 const updateData = {};
-                if (newName !== "") updateData.name = newName;
-                if (newPrice !== "") updateData.price = newPrice;
-                if (newDescription !== "") updateData.description = newDescription;
-                if (newQuantity !== "") updateData.quantity = newQuantity;
-                if (newUnit !== "") updateData.unit = newUnit;
+                if (newName !== "") updateData.name = newName; else updateData.name = existingProduct.name;
+                if (newPrice !== "") updateData.price = newPrice; else updateData.price = existingProduct.price;
+                if (newDescription !== "") updateData.description = newDescription; else updateData.description = existingProduct.description;
+                if (newQuantity !== "") updateData.quantity = newQuantity; else updateData.quantity = existingProduct.quantity;
+                if (newUnit !== "") updateData.unit = newUnit; else updateData.unit = existingProduct.unit;
 
                 const result = await productsCollection.updateOne(
-                    { "_id": ObjectId(id) },
+                    { "_id":  new ObjectId(id) },
                     {
                         $set: updateData
                     }
@@ -116,14 +116,14 @@ async function connect() {
         app.delete('/products/:id', async (req, res) => {
             try {
                 const id = req.params.id;
-                const product = await productsCollection.findOne({ "_id": ObjectId(id) });
+                const product = await productsCollection.findOne({ "_id": new ObjectId(id) });
                 if (!(product)) {
                     res.json({ error: 'Brak produktu o takim id w bazie danych.' });
                     return;
                 }
 
                 const result = await productsCollection.deleteOne(
-                    { "_id": ObjectId(id) }
+                    { "_id": new ObjectId(id) }
                 );
 
                 if (result.deletedCount === 1) {

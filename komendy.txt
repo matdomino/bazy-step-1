@@ -1,0 +1,9 @@
+curl -X GET -H "Content-Type: application/json" -d "{\"sortBy\": \"name\", \"sortOrder\": \"asc\"}" http://localhost:3000/products
+
+curl -X POST -H "Content-Type: application/json" -d "{\"name\": \"tsest\", \"price\": 7, \"description\": \"test\", \"quantity\": 100000000, \"unit\": \"szt\" }" http://localhost:3000/products
+
+curl -X PUT -H "Content-Type: application/json" -d "{\"name\": \"\", \"price\": 999999999, \"description\": \"999999999\", \"quantity\": 999999999, \"unit\": \"test\" }" http://localhost:3000/products/"6572416403a1d02536f4e130"
+
+curl -X DELETE -H "Content-Type: application/json" http://localhost:3000/products/"6572416403a1d02536f4e12f"
+
+curl -X GET -H "Content-Type: application/json" http://localhost:3000/report
