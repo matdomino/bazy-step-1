@@ -34,6 +34,38 @@ async function connect() {
             }
         });
 
+        app.post('/products', async (req, res) => {
+            try {
+                const { name, price, description, quantity, unit } = req.body;
+                const product = {
+                    "name": 0,
+                    "price": 0,
+                    "description": 0,
+                    "quantity": 0,
+                    "unit": 0
+                }
+            
+                if (
+                    typeof name !== 'string' ||
+                    typeof price !== 'number' ||
+                    typeof description !== 'string' ||
+                    typeof quantity !== 'number' || 
+                    !Number.isInteger(quantity) ||
+                    typeof unit !== 'string'
+                ) {
+                    res.json({ error: 'Błędne dane' });
+                    return;
+                }
+
+                const result = await productsCollection.insertOne(product);
+                res.json(result);
+
+            } catch (err) {
+                console.error(err);
+                res.send('Wystąpił błąd serwera lub podałeś za mało bądź za dużo danych');
+            }
+        });
+
         app.listen(port, () => {
             console.log(`Serwer działa na porcie: ${port}`);
         });
