@@ -146,7 +146,7 @@ async function connect() {
                     return {
                         name: product.name,
                         quantity: product.quantity.toString() + ' ' + product.unit,
-                        totalValue: product.quantity * product.price
+                        totalValue: (product.quantity * product.price).toFixed(2)
                     };
                 });
         

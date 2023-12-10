@@ -201,8 +201,8 @@ db.products.insertMany([
 },
 {
     "name": "Ser żółty",
-    "price": 40,
-    "description": "Opakowania 5kg - kupowany na dg",
+    "price": 4,
+    "description": "Opakowania - kupowany na dg",
     "quantity": 1000,
     "unit": "dg"
 },
