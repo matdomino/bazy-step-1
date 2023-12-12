@@ -31,7 +31,7 @@ async function connect() {
                 res.json(products);
             } catch (err) {
                 console.error(err);
-                return res.send(err);
+                return res.json({ error: 'Wystąpił błąd podczas przetwarzania danych.' });
             }
         });
 
@@ -71,8 +71,8 @@ async function connect() {
                 }
 
             } catch (err) {
-                res.send(err);
                 console.error(err);
+                return res.json({ error: 'Wystąpił błąd podczas przetwarzania danych.' });
             }
         });
 
@@ -108,8 +108,8 @@ async function connect() {
                 }
 
             } catch (err) {
-                res.send(err);
                 console.error(err);
+                return res.json({ error: 'Wystąpił błąd podczas przetwarzania danych.' });
             }
         });
 
@@ -134,7 +134,7 @@ async function connect() {
 
             } catch (err) {
                 console.error(err);
-                return res.send(err);
+                return res.json({ error: 'Wystąpił błąd podczas przetwarzania danych.' });
             }
         });
 
@@ -153,7 +153,7 @@ async function connect() {
                 res.json(report);
             } catch (err) {
                 console.error(err);
-                res.send(err);
+                return res.json({ error: 'Wystąpił błąd podczas przetwarzania danych.' });
             }
         });
 
